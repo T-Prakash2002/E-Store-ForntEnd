@@ -1,9 +1,10 @@
 import React from "react";
 import "./style/Navbar.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link,Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { EllipsisVertical,LogIn,UserRoundPlus } from "lucide-react";
+import { EllipsisVertical,Home,Heart,LogIn,LogOut,ShoppingCart,UserRoundPlus } from "lucide-react";
 import { logout } from "../Redux/authActions";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -16,9 +17,9 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-md p-3">
         <div className="container-fluid">
-          <a className="navbar-brand logo fw-bold" href="#">
-            project
-          </a>
+          <Link to="/" className="navbar-brand logo fw-bold">
+            E-Commerce
+          </Link>
 
           <button
             className="navbar-toggler "
@@ -34,58 +35,42 @@ const Navbar = () => {
             </span>
           </button>
           <div className="collapse navbar-collapse " id="navbarNav">
-            <ul className="navbar-nav me-auto mb-lg-0">
+            <ul className="navbar-nav ms-auto mb-lg-0">
+
+
               <li className="nav-item">
-                <a className="nav-link " aria-current="page" href="#home">
-                  Home
-                </a>
+                <Link to="/" className="nav-link " aria-current="page">
+                    <span className="nav-link-text"> Home</span>
+                </Link>
+                  
+               
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#about">
-                  About
-                </a>
+                <Link to="/cart" className="nav-link">
+                  <span className="nav-link-text"> Cart</span>
+                  <ShoppingCart className="login-icon" width={20} height={20} />
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#education">
-                  Education
-                </a>
+                <Link to="/wishlist" className="nav-link">
+                  <span className="nav-link-text"> WishList</span>
+                  <Heart className="login-icon" width={20} height={20} />
+                </Link>
               </li>
 
-              <li className="nav-item">
-                <a className="nav-link" href="#skills">
-                  Skills
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="#projects">
-                  Projects
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <a className="nav-link" href="#contact">
-                  Contact
-                </a>
-              </li>
             </ul>
 
             {IsLogIn ? (
               <div className=" d-flex gap-2 px-2">
                 <button
                   className="btn loginBtn btn-outline-secondary w-100"
-                  // onClick={() =>{
-                  //
-                  //   dispatch(logout());
-                  //   navigate("/");
-                  //
-                  //   }}
                   data-bs-toggle="modal"
                   data-bs-target="#staticBackdrop"
                 >
                   Log Out
+                  <LogOut className="login-icon" width={20} height={20} />
                 </button>
 
                 <div
@@ -151,6 +136,9 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <div className="row">
+        <Outlet />
+      </div>
     </div>
   );
 };

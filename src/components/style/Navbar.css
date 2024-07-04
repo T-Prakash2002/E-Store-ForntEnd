@@ -17,7 +17,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: rgb(228, 185, 185); */
+  background-color: rgb(243, 252, 249);
 
 }
 a {
@@ -25,35 +25,32 @@ a {
 }
 
 .logo {
-  /* font-family: "rowdies", sans-serif; */
   font-size: 1.11rem;
   color: #864545;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-style: italic;
-  /* margin-top: 1rem; */
 }
 .logo::selection {
   color: #7e7564;
 }
-/* ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-} */
-li a {
+
+nav ul li a {
   text-decoration: none;
   letter-spacing: 2px;
-  color: #e0a638 !important;
+  color: #3b362c !important;
   text-transform: uppercase;
   font-size: smaller;
   font-weight: bold;
 }
-li a::selection {
+nav ul li a::selection {
   color: #221f1b;
 }
 
+nav ul li a:focus,nav ul li a:hover{
+    color: darkcyan !important;
+    border-bottom:3px solid darkcyan;
+}
 .navbar-toggler:focus {
   text-decoration: none;
   outline: 0;

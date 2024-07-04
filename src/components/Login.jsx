@@ -55,7 +55,7 @@ function Login() {
             
             <div className="form-group">
 
-                <Field type="email" name="email" placeholder="Email" className="form-control focus"/>
+                <Field type="email" name="email" placeholder="Email" className="form-control  "/>
                 <ErrorMessage className='errorMsg' name="email" component="div"/>
 
             </div>
