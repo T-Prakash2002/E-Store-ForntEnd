@@ -116,6 +116,25 @@ export const addToCart = (product_id,quantity) => async dispatch => {
     }
 }
 
+export const addToWishlist = (product_id) => async dispatch => {
+    try {
+        const { data } = await axios.post(`${API_URL}/wishlist/add`, {
+            user_email,
+            product_id,
+        });
+
+        if (data.message === 'Product is added to wishlist') {
+            toast.success(data.message, { className: 'success-toast', autoClose: 2000 });
+        }
+        else{
+            toast.error(data.message, { className: 'Failed-toast', autoClose: 2000 });
+        }
+        
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
 
 
 
