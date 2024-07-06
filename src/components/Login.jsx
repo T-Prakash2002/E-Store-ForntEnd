@@ -33,7 +33,7 @@ function Login() {
             const response = await dispatch(login(values.email,values.password));
 
             if(response.message === 'Login Successful'){
-              navigate('/');
+              navigate(-1);
               resetForm();
             }else{
               toast.error(response.message, { className: 'Failed-toast' });

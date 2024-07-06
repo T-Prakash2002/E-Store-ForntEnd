@@ -3,10 +3,13 @@ import {
     Loading,
     LOGIN,
     LOGOUT,
-    SEARCH,
+    ADD_TO_CART,
+    REMOVE_FROM_CART,
+    ADD_TO_WISHLIST,
+    REMOVE_FROM_WISHLIST,
+
 }from "./authType";
 import Products from "../data.json";
-const Productsdata=Products.products;
 
 
 const initialState = {
@@ -14,9 +17,9 @@ const initialState = {
     user: JSON.parse(localStorage.getItem('LogInUser')) ?? [],
     isLoggedIn: localStorage.getItem('IsLogIn') ?? false,
     token: localStorage.getItem('UserToken') ?? null,
-    Productsdata:Productsdata,
     error: null,
-    SearchedList:[],
+    Productsdata:Products.products,
+
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -33,11 +36,9 @@ export const authReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 user: [],
             };
-        case SEARCH:
-            return {
-                ...state,
-                SearchedList: action.payload,
-            };
+
+
+
 
 
         default:

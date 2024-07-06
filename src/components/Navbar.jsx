@@ -18,7 +18,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-md p-3">
         <div className="container-fluid">
           <Link to="/" className="navbar-brand logo fw-bold">
-            E-Commerce
+            E-Stores
           </Link>
 
           <button
@@ -36,7 +36,6 @@ const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse " id="navbarNav">
             <ul className="navbar-nav ms-auto mb-lg-0">
-
 
               <li className="nav-item">
                 <Link to="/" className="nav-link " aria-current="page">

@@ -1,0 +1,56 @@
+.particular-product {
+  width: 100%;
+  height: 100vh;
+}
+.particular-product .BackArrow {
+  padding-left: 10px;
+}
+.particular-product-row {
+  position: relative;
+  left: 40px;
+  
+}
+.particular-product-row .product-image {
+    padding: 2rem;
+    width: 30rem;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+}
+.product-details {
+    display: grid;
+    place-items: center;
+
+}
+
+.Order-product {
+  padding: 2rem;
+  position: relative;
+  top: 30px;
+}
+.Order-product button {
+  width: 10rem;
+}
+.add-to-cart-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+.wishlist-btn {
+  background-color: #eebcd5;
+  color: #fff;
+}
+
+.Quantity-Section{
+  display: flex;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  position: relative;
+  left: 0px;
+  top: 30px;
+}
+.Quantity-Section button{
+  background-color: transparent;
+  border: none;
+}

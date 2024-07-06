@@ -14,6 +14,8 @@ import ShowProducts from "./components/ShowProducts";
 import Cart from "./components/Cart";
 import Wishlist from "./components/Wishlist";
 import SearchBar from "./components/SearchBar.jsx";
+import CategoriesProducts from "./components/CategoriesProducts.jsx";
+import ParticularProduct from "./components/ParticularProduct.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,12 +50,22 @@ const router = createBrowserRouter([
         path: "register_page",
         element: <Registration />,
       },
+      {
+        path: "product-Groups/:productgroup",
+        element: <CategoriesProducts />,
+      },
+      {
+        path: "product-detail/:productgroup/:id",
+        element: <ParticularProduct />,
+      }
+
+
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <>
     <ToastContainer
       draggable
       position="top-left"
@@ -66,5 +78,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>
+  </>
 );

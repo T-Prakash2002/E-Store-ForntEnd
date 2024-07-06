@@ -2,15 +2,15 @@ import axios from "axios";
 import {
     LOGIN,
     LOGOUT,
-    FETCH_PRODUCTS,
-    SEARCH,
+    ADD_TO_CART,
+    REMOVE_FROM_CART,
+    ADD_TO_WISHLIST,
+    REMOVE_FROM_WISHLIST,
 } from "./authType";
 import { API_URL } from "../constants";
 import { toast } from 'react-toastify';
-import Products from "../data.json";
 
-const Productsdata=Products.products;
-const FilterList=[];
+const user_email=JSON.parse(localStorage.getItem('LogInUser'))?.email;
 
 
 export const login = (email, password) => async dispatch => {
@@ -71,51 +71,51 @@ export const register = (name, email, password) => async dispatch => {
         localStorage.setItem('LogInUser', JSON.stringify(data?.user));
         localStorage.setItem('UserToken', data.Token);
 
-        if(data.message === 'Registered Successfully'){
+        if (data.message === 'Registered Successfully') {
             toast.success(data.message, { className: 'success-toast' });
             dispatch({
                 type: LOGIN,
                 payload: data.user,
             });
-        return data;
+            return data;
         }
-        else{
+        else {
             toast.error(data.message, { className: 'Failed-toast' });
             return data;
         }
 
-        
+
     }
     catch (error) {
         alert("Register Failed");
     }
 }
 
-
-export const fetchProducts = () => async dispatch => {
+export const addToCart = (product_id,quantity) => async dispatch => {
+    console.log(product_id,quantity)
     try {
-       
+        const { data } = await axios.post(`${API_URL}/cart/add`, {
+            user_email,
+            product_id,
+            quantity,
+        });
 
-
-
+        // console.log(data);
+        if (data.message === 'Product is added to cart') {
+            toast.success(data.message, { className: 'success-toast', autoClose: 2000 });
+        }
+        else if (data.message === 'Product Quantity is updated') {
+            toast.success(data.message, { className: 'success-toast', autoClose: 2000 });
+        }else{
+            toast.error(data.message, { className: 'Failed-toast', autoClose: 2000 });
+        }
         
-    } catch (error) {
+    }
+    catch (error) {
         console.log(error);
     }
 }
 
-export const SearchItem = (search) => async dispatch => {
-    // Productsdata.filter(item=>item.title.toLowerCase().includes(search.toLowerCase()));
-    // Productsdata.map((item,index)=>{console.log(index+" "+item.category)})
 
-    const FilterList=[...new Set(Productsdata.map(item=>item.category))];
-// 
-//     const SearchedList=Productsdata.filter(item=>{
-//         return item.binding.toLowerCase().includes(search.toLowerCase());
-//     });
-    console.log(FilterList);
-    // dispatch({
-    //     type: SEARCH,
-    //     payload: SearchedList,
-    // });
-}
+
+

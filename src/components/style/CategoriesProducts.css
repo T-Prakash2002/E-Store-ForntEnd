@@ -1,0 +1,39 @@
+.ProductGroup-Page {
+  padding: 2rem;
+}
+.ProductGroup-Page .card {
+  border: none;
+  background-color: #e4f2f5;
+  padding: 1rem;
+  margin: 1rem;
+  width: 15rem;
+}
+.ProductGroup-Page .card:hover {
+  background-color: #cdeff0;
+  color: #f0efef;
+  box-shadow: 0px 0px 10px #e5d7f3;
+  transition: all 0.s ease-in-out;
+}
+
+.ProductGroup-Page .card .card-title {
+  font-size: 20px;
+  color: #1b1010;
+}
+
+.Pagination {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0 2rem 0;
+}
+.Pagination button {
+  border: none;
+  background-color: #f0efef;
+  color: #1b1010;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+}
+.Pagination button:hover {
+  background-color: #5e288a;
+  color: #f0efef;
+}

@@ -29,7 +29,7 @@ function Registration() {
             const response = await dispatch(register(values.name,values.email,values.password));
 
             if(response.message === 'Registered Successfully'){
-              navigate('/');
+              navigate(-1);
               resetForm()
             }
             

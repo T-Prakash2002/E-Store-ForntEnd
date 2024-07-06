@@ -18,12 +18,10 @@ nav {
   justify-content: space-between;
   align-items: center;
   background-color: rgb(243, 252, 249);
-
 }
 a {
   text-decoration: none;
 }
-
 .logo {
   font-size: 1.11rem;
   color: #864545;
@@ -34,7 +32,6 @@ a {
 .logo::selection {
   color: #7e7564;
 }
-
 nav ul li a {
   text-decoration: none;
   letter-spacing: 2px;
@@ -46,10 +43,8 @@ nav ul li a {
 nav ul li a::selection {
   color: #221f1b;
 }
-
 nav ul li a:focus,nav ul li a:hover{
-    color: darkcyan !important;
-    border-bottom:3px solid darkcyan;
+  color: rgb(219, 36, 36) !important;
 }
 .navbar-toggler:focus {
   text-decoration: none;
