@@ -15,8 +15,9 @@ import { toast } from 'react-toastify';
 
 
 
+const token = localStorage.getItem('UserToken')??'';
 
-
+console.log(token);
 
 export const login = (email, password) => async dispatch => {
 
@@ -32,7 +33,10 @@ export const login = (email, password) => async dispatch => {
 
             dispatch({
                 type: LOGIN,
-                payload: data.user,
+                payload: {
+                    user: data.user,
+                    token: data.Token,
+                },
             });
 
             getCart(data.user.email);
@@ -79,16 +83,17 @@ export const register = (name, email, password) => async dispatch => {
             password
         });
 
-        localStorage.setItem('IsLogIn', true);
-        localStorage.setItem('LogInUser', JSON.stringify(data?.user));
-        localStorage.setItem('UserToken', data.Token);
+        // localStorage.setItem('IsLogIn', true);
+        // localStorage.setItem('LogInUser', JSON.stringify(data?.user));
+        // localStorage.setItem('UserToken', data.Token);
+
 
         if (data.message === 'Registered Successfully') {
             toast.success(data.message, { className: 'success-toast' });
-            dispatch({
-                type: LOGIN,
-                payload: data.user,
-            });
+            // dispatch({
+            //     type: LOGIN,
+            //     payload: data.user,
+            // });
             return data;
         }
         else {
@@ -110,7 +115,12 @@ export const addToCart = (email, product_id, quantity) => async dispatch => {
             email,
             product_id,
             quantity,
-        });
+        }, {
+            headers: {
+                Authorization:token,
+            }
+        }
+        )
 
         // dispatch({
         //     type:'ADD_TO_CART',
@@ -136,7 +146,11 @@ export const addToCart = (email, product_id, quantity) => async dispatch => {
 
 export const getCart = (email) => async dispatch => {
     try {
-        const response = await axios.get(`${API_URL}/cart/get?user_email=${email}`);
+        const response = await axios.get(`${API_URL}/cart/get?user_email=${email}`, {
+            headers: {
+                Authorization: token,
+            }
+        });
 
         if (response.data.message == 'Cart is retrieved successfully') {
 
@@ -159,7 +173,7 @@ export const getCart = (email) => async dispatch => {
             return;
         }
         else {
-            console.log(response.data.message);
+            toast.info(response.data.message, { autoClose: 2000 });
         }
 
     }
@@ -185,7 +199,11 @@ export const getAmount = (cartData) => async dispatch => {
 
 export const removeFromCart = (email, product_id, quantity) => async dispatch => {
     try {
-        const { data } = await axios.delete(`${API_URL}/cart/remove?product_id=${product_id}&email=${email}`);
+        const { data } = await axios.delete(`${API_URL}/cart/remove?product_id=${product_id}&email=${email}`, {
+            headers: {
+                Authorization: token,
+            }
+        });
 
         if (data.message === 'Product is removed from cart') {
 
@@ -206,7 +224,11 @@ export const addToWishlist = (email, product_id) => async dispatch => {
         const { data } = await axios.post(`${API_URL}/wishlist/add`, {
             email,
             product_id,
-        });
+        }, {
+            headers: {
+                Authorization: token,
+            }
+        }); 
 
         if (data.message === 'Product is added to wishlist') {
             toast.success(data.message, { className: 'success-toast', autoClose: 2000 });
@@ -225,7 +247,11 @@ export const addToWishlist = (email, product_id) => async dispatch => {
 
 export const getWishlist = (email) => async dispatch => {
     try {
-        const response = await axios.get(`${API_URL}/wishlist/get?user_email=${email}`);
+        const response = await axios.get(`${API_URL}/wishlist/get?user_email=${email}`, {
+            headers: {
+                Authorization: token,
+            }
+        });
 
         if (response.data.message == 'Wishlist is retrieved successfully') {
 
@@ -238,7 +264,7 @@ export const getWishlist = (email) => async dispatch => {
             return;
         }
         else {
-            console.log(response.data.message);
+            toast.info(response.data.message, { autoClose: 2000 });
         }
 
     }
@@ -249,7 +275,12 @@ export const getWishlist = (email) => async dispatch => {
 
 export const removeFromWishlist = (email, product_id) => async dispatch => {
     try {
-        const { data } = await axios.delete(`${API_URL}/wishlist/remove?product_id=${product_id}&email=${email}`);
+        const { data } = await axios.delete(`${API_URL}/wishlist/remove?product_id=${product_id}&email=${email}`, {
+            headers: {
+                Authorization: token,
+            }
+        });
+
         if (data.message === 'Product is removed from wishlist') {
             toast.success(data.message, { className: 'success-toast', autoClose: 2000 });
         }

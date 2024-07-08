@@ -34,7 +34,6 @@ function Login() {
 
             if(response.message === 'Login Successful'){
               navigate(-1);
-              dispatch(getCart(values.email));
               resetForm();
             }else{
               toast.error(response.message, { className: 'Failed-toast' });

@@ -29,7 +29,6 @@ const Home = () => {
   ];
 
   let secondSectionDataArray = [];
-  console.log(secondSectionData);  
 
   for (let i = 0; i < secondSectionData.length; i++) {
     for (let j = 0; j < Productsdata.length; j++) {

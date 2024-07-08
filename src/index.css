@@ -8,8 +8,8 @@ body {
 }
 
 .success-toast {
-  background-color: #d8e9de !important;
-  color: #fff !important;
+  background-color: #80e2a5 !important;
+  color: #413131 !important; 
   
 }
 .Failed-toast {

@@ -1,7 +1,6 @@
 
 import './App.css'
 import Navbar from './components/Navbar'
-import { useDispatch } from 'react-redux'
 
 function App() {
 
@@ -9,7 +8,7 @@ function App() {
     <>
       <Navbar/>
       <div className="footer mt-4">
-        <p className='text-center'>@2023 All rights reserved</p>
+        <p>&copy; 2024 Copyright: All Rights Reserved</p>
       </div>
     </>
   )

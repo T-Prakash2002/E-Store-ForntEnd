@@ -79,7 +79,6 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-{/* dispatch(getWishlist(UserDetails.email)) */}
             {IsLogIn ? (
               <div className=" d-flex gap-2 px-2">
                 <button
@@ -154,7 +153,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div className="row">
+      <div className="row outlet">
         <Outlet />
       </div>
     </div>

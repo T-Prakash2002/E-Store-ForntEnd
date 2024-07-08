@@ -5,7 +5,7 @@ import './style/UserRegistration.css'
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { register } from '../Redux/authActions'
+import { register,login } from '../Redux/authActions'
 
 
 function Registration() {
@@ -29,7 +29,8 @@ function Registration() {
             const response = await dispatch(register(values.name,values.email,values.password));
 
             if(response.message === 'Registered Successfully'){
-              navigate(-1);
+              await dispatch(login(values.email,values.password));
+              navigate('/');
               resetForm()
             }
             
