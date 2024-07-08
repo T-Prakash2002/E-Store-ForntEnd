@@ -1,17 +1,12 @@
 import React from "react";
-// import Products from "../data.json"
-import {
-  useSelector
-} from "react-redux"
+import {useNavigate} from "react-router-dom"
+import {Heart} from "lucide-react"
+import { useSelector } from "react-redux";
 
 
 const ShowProducts = ({ProductDataList}) => {
-
-  // const data=Products.products;
-  // const data=useSelector(state=>state.auth.SearchedList);
-
-  console.log(ProductDataList)
-  
+  const navigate=useNavigate()
+  const {wishlist}=useSelector(state=>state.auth)
 
   return (
     <>
@@ -23,7 +18,31 @@ const ShowProducts = ({ProductDataList}) => {
          {/*  */}
          {ProductDataList.map((item, index) => {
            return (
-             <div className="card col-3 " style={{ width: "15rem" }} key={index}>
+             <div className="card col-3 " style={{ width: "15rem" }} key={index}
+             onClick={()=>{
+                navigate(`/particular-product/${item._id.$oid}`)
+              }}
+             >
+
+
+              {
+                (wishlist==null)?
+                ""
+                :(
+                (wishlist?.some(Wishitem => Wishitem?.productId == item?._id?.$oid))?
+                <div className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  <span className="visually "><Heart size={17}/></span>
+                </div>
+                :""
+                )
+
+              }
+
+             
+
+
+
+
                <div className="d-flex justify-content-center pt-4">
                   <img src={item.images.small.url}  width={item.images.small.width} height={item.images.small.height} alt="..."/>
                </div>

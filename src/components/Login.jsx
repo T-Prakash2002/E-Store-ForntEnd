@@ -8,7 +8,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'
 import Registration from './Registration'
 import { useSelector,useDispatch } from 'react-redux'
-import { login } from '../Redux/authActions'
+import { login,getCart } from '../Redux/authActions'
 import { toast } from 'react-toastify';
 
 
@@ -34,6 +34,7 @@ function Login() {
 
             if(response.message === 'Login Successful'){
               navigate(-1);
+              dispatch(getCart(values.email));
               resetForm();
             }else{
               toast.error(response.message, { className: 'Failed-toast' });

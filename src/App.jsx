@@ -8,7 +8,9 @@ function App() {
   return (
     <>
       <Navbar/>
-            
+      <div className="footer mt-4">
+        <p className='text-center'>@2023 All rights reserved</p>
+      </div>
     </>
   )
 }

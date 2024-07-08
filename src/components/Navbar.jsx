@@ -3,7 +3,7 @@ import "./style/Navbar.css";
 import { useNavigate,Link,Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { EllipsisVertical,Home,Heart,LogIn,LogOut,ShoppingCart,UserRoundPlus } from "lucide-react";
-import { logout } from "../Redux/authActions";
+import { logout,getCart,getWishlist } from "../Redux/authActions";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
@@ -42,25 +42,44 @@ const Navbar = () => {
                     <span className="nav-link-text"> Home</span>
                 </Link>
                   
-               
               </li>
 
               <li className="nav-item">
-                <Link to="/cart" className="nav-link">
+                <Link className="nav-link" to="/cart"
+                onClick={()=>{
+                  if(IsLogIn){
+                    dispatch(getCart(UserDetails.email))
+                    navigate("/cart")
+                  }else{
+                    // alert("Please Login First")
+                    toast.error("Please Login First")
+                  }
+                }}
+                >
                   <span className="nav-link-text"> Cart</span>
                   <ShoppingCart className="login-icon" width={20} height={20} />
                 </Link>
               </li>
 
               <li className="nav-item">
-                <Link to="/wishlist" className="nav-link">
+                <Link to="/wishlist" className="nav-link"
+                  onClick={()=>{
+                  if(IsLogIn){
+                    dispatch(getWishlist(UserDetails.email))
+                    navigate("/wishlist")
+                  }else{
+                    // alert("Please Login First")
+                    toast.error("Please Login First")
+                    
+                  }
+                  }}
+                >
                   <span className="nav-link-text"> WishList</span>
                   <Heart className="login-icon" width={20} height={20} />
                 </Link>
               </li>
-
             </ul>
-
+{/* dispatch(getWishlist(UserDetails.email)) */}
             {IsLogIn ? (
               <div className=" d-flex gap-2 px-2">
                 <button

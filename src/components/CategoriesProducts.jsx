@@ -12,7 +12,7 @@ const CategoriesProducts = () => {
   });
   const navigate=useNavigate();
 
-  const { Productsdata } = useSelector((state) => state.auth);
+  const { Productsdata,wishlist } = useSelector((state) => state.auth);
 
   const { productgroup } = useParams();
 
@@ -57,6 +57,17 @@ const CategoriesProducts = () => {
                   navigate(`/product-detail/${item?.productgroup}/${item?._id?.$oid}`
                   )}}
               >
+                {
+                  (wishlist==[] || wishlist==null)?
+                  ""
+                  :(
+                (wishlist?.some(Wishitem => Wishitem?.productId == item?._id?.$oid))?
+                <div className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  <span className="visually "><Heart size={17}/></span>
+                </div>
+                :""
+                )
+              }
                 <div className="card-body d-flex flex-column justify-content-center align-items-center">
                 <img
                   src={item.images.medium.url}

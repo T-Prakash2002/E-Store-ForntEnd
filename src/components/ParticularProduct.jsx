@@ -4,17 +4,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ArrowLeft, ShoppingCart, Heart,Plus, Minus } from "lucide-react";
 import "./style/ParticularProduct.css";
-import { addToCart, addToWishlist } from "../Redux/authActions";
+import { addToCart, addToWishlist, getCart } from "../Redux/authActions";
 
 const ParticularProduct = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
 
-  const [Quantity,setQuantity]=useState(1)
-  const { Productsdata,isLoggedIn } = useSelector((state) => state.auth);
-
-  const { productgroup, id } = useParams();
+  const [Quantity,setQuantity]=useState(1);
+  const { Productsdata,isLoggedIn,user } = useSelector((state) => state.auth);
+  const { id } = useParams();
 
   const Product = Productsdata.find((item) => item._id.$oid === id);
 
@@ -33,6 +32,7 @@ const ParticularProduct = () => {
       </div>
       <div className="row particular-product-row d-flex flex">
         <div className="product-image col-12 col-sm-6">
+          
           <img src={Product?.images?.large?.url} alt="" />
         </div>
         <div className="product-details col-12 col-sm-6">
@@ -75,14 +75,8 @@ const ParticularProduct = () => {
           </div>
 
           <div className="Quantity-Section">
-            <button onClick={()=>{
-                if(Quantity<10){
-                    setQuantity(Quantity+1)
-                }
-            }}>
-                <Plus />
-            </button>
-            <button>{Quantity}</button>
+            
+            
             <button onClick={()=>{
                 if(Quantity>1){
                     setQuantity(Quantity-1)
@@ -90,13 +84,23 @@ const ParticularProduct = () => {
             }}>
                 <Minus />
             </button>
+            <button>{Quantity}</button>
+
+            <button onClick={()=>{
+                if(Quantity<10){
+                    setQuantity(Quantity+1)
+                }
+            }}>
+                <Plus />
+            </button>
           </div>
 
           <div className="row Order-product d-flex gap-3">
             <button className="btn add-to-cart-btn col-12 col-sm-6"
                 onClick={()=>{
                   if(isLoggedIn){
-                    dispatch(addToCart(Product._id.$oid,Quantity))
+                    dispatch(addToCart(user.email,Product._id.$oid,Quantity))
+                    dispatch(getCart(user.email));
                   }
                   else{
                     alert("Please Login First")
@@ -108,10 +112,10 @@ const ParticularProduct = () => {
               Add to Cart
             </button>
 
-            <button className="btn wishlist-btn col-12 col-sm-6" 
+            <button className="btn wishlist-btn col-12 col-sm-6"
                 onClick={()=>{
                   if(isLoggedIn){
-                    dispatch(addToWishlist(Product._id.$oid))
+                    dispatch(addToWishlist(user.email,Product._id.$oid))
                   }else{
                     alert("Please Login First")
                     navigate("/login_page")

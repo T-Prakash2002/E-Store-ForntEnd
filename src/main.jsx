@@ -55,11 +55,13 @@ const router = createBrowserRouter([
         element: <CategoriesProducts />,
       },
       {
+        path: "particular-product/:id",
+        element: <ParticularProduct />,
+      },
+      {
         path: "product-detail/:productgroup/:id",
         element: <ParticularProduct />,
       }
-
-
     ],
   },
 ]);

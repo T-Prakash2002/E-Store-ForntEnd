@@ -1,0 +1,94 @@
+
+.cart-container .cart-list {
+  display: flex;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+.cart-container .card-column {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+.cart-title-h1{
+    font-family: "Kanit", sans-serif;
+    font-size: 4rem;
+    position: relative;
+    top: 2rem;
+    color: #db7575;
+}
+.cart-container .card {
+  width: 20rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  height: 100%;
+  z-index: 10;
+}
+.cart-container .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.cart-container .card-title {
+  position: relative;
+  width: 250px;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: 0;
+  overflow: hidden;
+}
+.cart-container .card-price {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.cart-container .card-quantity {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.cart-container .card .btn {
+  z-index: 10;
+}
+
+.Order-Summary {
+  position: relative;
+  top: 30px;
+  left: 10%;
+  margin-bottom: 100px;
+  width: 80vw;
+  background-color: aliceblue;
+  box-shadow: 0 0 6px rgb(228, 225, 225);
+  padding:0 40px 0 40px ;
+}
+.Order-Summary header {
+  font-family: "Kanit", sans-serif;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  color: cadetblue;
+}
+.Summary {
+  width: 100%;
+  
+}
+.Summary ul {
+  list-style: none;
+}
+.Summary ul li {
+  font-family: "Kanit", sans-serif;
+  padding: 10px;
+}
+.listof-amount {
+  display: flex;
+  justify-content: end;
+}
+.Order-Summary footer {
+  font-family: "Kanit", sans-serif;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}

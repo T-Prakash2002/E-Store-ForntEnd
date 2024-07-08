@@ -3,10 +3,12 @@ import {
     Loading,
     LOGIN,
     LOGOUT,
+    GET_CART,
     ADD_TO_CART,
-    REMOVE_FROM_CART,
     ADD_TO_WISHLIST,
     REMOVE_FROM_WISHLIST,
+    AMOUNT,
+    GET_WISHLIST,
 
 }from "./authType";
 import Products from "../data.json";
@@ -17,9 +19,10 @@ const initialState = {
     user: JSON.parse(localStorage.getItem('LogInUser')) ?? [],
     isLoggedIn: localStorage.getItem('IsLogIn') ?? false,
     token: localStorage.getItem('UserToken') ?? null,
-    error: null,
     Productsdata:Products.products,
-
+    cart:JSON.parse(localStorage.getItem('Cart')) ?? [],
+    TotalAmount:0,
+    wishlist:JSON.parse(localStorage.getItem('Wishlist')) ?? [],
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -35,12 +38,27 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: false,
                 user: [],
+                cart:[],
+                TotalAmount:0,
+                wishlist:[],
+                token:null,
             };
-
-
-
-
-
+        case GET_CART:
+            return {
+                ...state,
+                cart: action.payload,
+            };
+        case AMOUNT:
+            return {
+                ...state,
+                TotalAmount: action.payload,
+            };
+        case GET_WISHLIST:
+            return {
+                ...state,
+                wishlist: action.payload,
+            };
+        
         default:
             return state;
     }
