@@ -15,8 +15,6 @@ import { toast } from 'react-toastify';
 
 
 
-const token = localStorage.getItem('UserToken')??'';
-
 
 export const login = (email, password) => async dispatch => {
 
