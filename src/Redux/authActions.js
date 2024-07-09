@@ -116,7 +116,7 @@ export const addToCart = (email, product_id, quantity) => async dispatch => {
             quantity,
         }, {
             headers: {
-                Authorization:token,
+                Authorization:localStorage.getItem('UserToken'),
             }
         }
         )
@@ -147,7 +147,7 @@ export const getCart = (email) => async dispatch => {
     try {
         const response = await axios.get(`${API_URL}/cart/get?user_email=${email}`, {
             headers: {
-                Authorization: token,
+                Authorization: localStorage.getItem('UserToken'),
             }
         });
 
@@ -200,7 +200,7 @@ export const removeFromCart = (email, product_id, quantity) => async dispatch =>
     try {
         const { data } = await axios.delete(`${API_URL}/cart/remove?product_id=${product_id}&email=${email}`, {
             headers: {
-                Authorization: token,
+                Authorization: localStorage.getItem('UserToken'),
             }
         });
 
@@ -225,7 +225,7 @@ export const addToWishlist = (email, product_id) => async dispatch => {
             product_id,
         }, {
             headers: {
-                Authorization: token,
+                Authorization: localStorage.getItem('UserToken'),
             }
         }); 
 
@@ -248,7 +248,7 @@ export const getWishlist = (email) => async dispatch => {
     try {
         const response = await axios.get(`${API_URL}/wishlist/get?user_email=${email}`, {
             headers: {
-                Authorization: token,
+                Authorization: localStorage.getItem('UserToken'),
             }
         });
 
@@ -276,7 +276,7 @@ export const removeFromWishlist = (email, product_id) => async dispatch => {
     try {
         const { data } = await axios.delete(`${API_URL}/wishlist/remove?product_id=${product_id}&email=${email}`, {
             headers: {
-                Authorization: token,
+                Authorization: localStorage.getItem('UserToken'),
             }
         });
 
