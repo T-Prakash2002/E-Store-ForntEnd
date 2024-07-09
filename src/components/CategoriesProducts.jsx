@@ -3,7 +3,7 @@ import { useParams,useNavigate } from "react-router-dom";
 import "./style/CategoriesProducts.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Pagination } from "antd";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft,Heart } from "lucide-react";
 
 const CategoriesProducts = () => {
   const [listindex, setListindex] = useState({
